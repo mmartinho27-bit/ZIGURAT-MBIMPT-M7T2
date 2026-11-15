@@ -915,7 +915,7 @@ def template_specs(df: pd.DataFrame) -> list[dict]:
 PROVIDERS = {
     "Anthropic (Claude)": {"model": "claude-sonnet-5-5", "key_hint": "sk-ant-..."},
     "OpenAI": {"model": "gpt-4o-mini", "key_hint": "sk-..."},
-    "Google Gemini": {"model": "gemini-2.5-flash", "key_hint": "AIza..."},
+    "Google Gemini": {"model": "gemini-3.8-flash", "key_hint": "AIza..."},
     "Compatível OpenAI (URL própria)": {"model": "llama-3.3-70b-versatile", "key_hint": "chave do provedor"},
 }
 FILTER_COLUMNS = ["Modelo", "Pavimento", "Classe", "Tipo", "Material"]
@@ -985,7 +985,7 @@ REGRAS:
 """
 
 
-def _post(url, headers, payload, timeout=90):
+def _post(url, headers, payload, timeout=180):
     r = requests.post(url, headers=headers, json=payload, timeout=timeout)
     if r.status_code >= 400:
         raise RuntimeError(f"HTTP {r.status_code}: {r.text[:400]}")
