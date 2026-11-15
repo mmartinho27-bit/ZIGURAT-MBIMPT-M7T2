@@ -915,7 +915,7 @@ def template_specs(df: pd.DataFrame) -> list[dict]:
 PROVIDERS = {
     "Anthropic (Claude)": {"model": "claude-sonnet-5-5", "key_hint": "sk-ant-..."},
     "OpenAI": {"model": "gpt-4o-mini", "key_hint": "sk-..."},
-    "Google Gemini": {"model": "gemini-3.8-flash", "key_hint": "AIza..."},
+    "Google Gemini": {"model": "gemini-3.6-flash", "key_hint": "AIza..."},
     "Compatível OpenAI (URL própria)": {"model": "llama-3.3-70b-versatile", "key_hint": "chave do provedor"},
 }
 FILTER_COLUMNS = ["Modelo", "Pavimento", "Classe", "Tipo", "Material"]
@@ -1008,7 +1008,7 @@ def call_llm(provider: str, api_key: str, model: str, system: str,
         js = _post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
                    {"x-goog-api-key": api_key, "content-type": "application/json"},
                    {"system_instruction": {"parts": [{"text": system}]}, "contents": contents,
-                    "generationConfig": {"temperature": 0.2, "responseMimeType": "application/json"}})
+                    "generationConfig": {"responseMimeType": "application/json"}})
         return js["candidates"][0]["content"]["parts"][0]["text"]
 
     url = (base_url or "https://api.openai.com/v1").rstrip("/") + "/chat/completions"
